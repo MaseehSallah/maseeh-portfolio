@@ -1,34 +1,98 @@
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  /* Light mode */
+
+  --background: #F2F4F1;
+  --foreground: #17283F;
+
+  --primary: #17283F;
+  --secondary: #345F85;
+  --accent: #48769A;
+
+  --surface: #FFFFFF;
+  --surface-muted: #DCE8F0;
+  --surface-soft: #E6ECEF;
+  --surface-green: #DCE8F0;
+
+  --text-primary: #17283F;
+  --text-secondary: #617286;
+  --text-light: #F2F4F1;
+
+  --border: #D4DFE7;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Dark mode */
+
+  --background: #111C2A;
+  --foreground: #E0E8EF;
+
+  --primary: #1B3049;
+  --secondary: #A8C8E0;
+  --accent: #729DBF;
+
+  --surface: #1D3046;
+  --surface-muted: #233B54;
+  --surface-soft: #17283F;
+  --surface-green: #233B54;
+
+  --text-primary: #E0E8EF;
+  --text-secondary: #B4C4D4;
+  --text-light: #F2F4F1;
+
+  --border: #35465C;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-green: var(--surface-green);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-light: var(--text-light);
+
+  --color-border: var(--border);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+}
+
+::selection {
+  background: #345F85;
+  color: #FFFFFF;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {

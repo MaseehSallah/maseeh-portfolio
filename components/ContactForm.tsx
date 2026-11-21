@@ -3,6 +3,7 @@
 
 import { useState, type FormEvent } from "react";
 
+// Keep your existing Web3Forms access key here.
 const ACCESS_KEY = "99d46633-dad6-41cf-b90d-1755db80bb25";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
@@ -65,9 +66,16 @@ export default function ContactForm() {
     }
   }
 
+  const fieldClass =
+    "w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-primary outline-none transition-colors duration-200 placeholder:text-text-secondary/70 focus:border-accent focus:ring-2 focus:ring-accent/20";
+
+  const labelClass =
+    "mb-2 block text-xs font-semibold text-text-secondary";
+
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* Spam protection */}
+
+      {/* SPAM PROTECTION */}
       <div className="hidden" aria-hidden="true">
         <input
           type="checkbox"
@@ -81,7 +89,7 @@ export default function ContactForm() {
       <div>
         <label
           htmlFor="contact-name"
-          className="mb-2 block text-xs font-semibold text-[#435A70]"
+          className={labelClass}
         >
           Your Name
         </label>
@@ -94,7 +102,7 @@ export default function ContactForm() {
           maxLength={100}
           autoComplete="name"
           placeholder="Enter your name"
-          className="w-full rounded-xl border border-[#D9E1E6] bg-white px-4 py-3 text-sm text-[#17283F] outline-none transition placeholder:text-[#9AA8B5] focus:border-[#48769A] focus:ring-2 focus:ring-[#48769A]/10"
+          className={fieldClass}
         />
       </div>
 
@@ -102,7 +110,7 @@ export default function ContactForm() {
       <div>
         <label
           htmlFor="contact-email"
-          className="mb-2 block text-xs font-semibold text-[#435A70]"
+          className={labelClass}
         >
           Email Address
         </label>
@@ -115,7 +123,7 @@ export default function ContactForm() {
           maxLength={254}
           autoComplete="email"
           placeholder="you@example.com"
-          className="w-full rounded-xl border border-[#D9E1E6] bg-white px-4 py-3 text-sm text-[#17283F] outline-none transition placeholder:text-[#9AA8B5] focus:border-[#48769A] focus:ring-2 focus:ring-[#48769A]/10"
+          className={fieldClass}
         />
       </div>
 
@@ -123,7 +131,7 @@ export default function ContactForm() {
       <div>
         <label
           htmlFor="contact-message"
-          className="mb-2 block text-xs font-semibold text-[#435A70]"
+          className={labelClass}
         >
           Your Message
         </label>
@@ -135,7 +143,7 @@ export default function ContactForm() {
           rows={5}
           maxLength={5000}
           placeholder="Tell me about your project or opportunity..."
-          className="w-full resize-y rounded-xl border border-[#D9E1E6] bg-white px-4 py-3 text-sm text-[#17283F] outline-none transition placeholder:text-[#9AA8B5] focus:border-[#48769A] focus:ring-2 focus:ring-[#48769A]/10"
+          className={`${fieldClass} resize-y`}
         />
       </div>
 
@@ -143,11 +151,14 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#17283F] px-6 py-4 text-sm font-semibold text-white transition duration-300 hover:bg-[#345F85] disabled:cursor-not-allowed disabled:opacity-60"
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#17283F] px-6 py-4 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#345F85] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "sending" ? (
           <>
-            <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+            <span
+              aria-hidden="true"
+              className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"
+            />
             Sending Message...
           </>
         ) : (
@@ -159,7 +170,7 @@ export default function ContactForm() {
       {status === "success" && (
         <div
           role="status"
-          className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800"
+          className="rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-900"
         >
           ✓ Your message was submitted successfully.
           Thank you for reaching out!
@@ -170,15 +181,16 @@ export default function ContactForm() {
       {status === "error" && (
         <div
           role="alert"
-          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+          className="rounded-xl border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800"
         >
           {errorMessage}
         </div>
       )}
 
-      <p className="text-center text-xs leading-5 text-[#7B8B9A]">
+      <p className="text-center text-xs leading-5 text-text-secondary">
         Your message will be delivered directly to my inbox.
       </p>
+
     </form>
   );
 }
