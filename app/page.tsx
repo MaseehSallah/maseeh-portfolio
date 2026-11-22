@@ -688,7 +688,7 @@ export default function Home() {
                   </p>
 
                   <a
-                    href="https://coursera.org/verify/WYEBQJ1IF663"
+                    href="https://www.coursera.org/account/accomplishments/professional-cert/HDFTJU134HXE"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2 inline-block text-xs font-semibold text-secondary hover:underline"
@@ -776,7 +776,7 @@ export default function Home() {
                     Bachelor of Computer Science
                   </p>
                   <p className="mt-1 text-xs text-text-secondary">
-                    Kardan University, Kabul
+                    Kardan University
                   </p>
                 </div>
 
